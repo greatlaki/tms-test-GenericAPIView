@@ -1,4 +1,4 @@
-from rest_framework.generics import get_object_or_404, ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import get_object_or_404, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 from articles.models import Article, Author
 from articles.serializers import ArticleSerializer
@@ -13,6 +13,6 @@ class ArticleView(ListCreateAPIView):
         return serializer.save(author=author)
 
 
-class SingleArticleView(RetrieveUpdateAPIView):
+class SingleArticleView(RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
