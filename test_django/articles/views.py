@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin
 
-# Create your views here.
+from articles.models import Article
+from articles.serializers import ArticleSerializer
+
+
+class ArticleView(ListModelMixin, GenericAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
